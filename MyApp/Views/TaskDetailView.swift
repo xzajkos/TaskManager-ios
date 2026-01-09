@@ -100,8 +100,15 @@ struct TaskDetailView: View {
                             HStack {
                                 Text("Due Date")
                                 Spacer()
-                                Text(dueDate.formatted(date: .abbreviated, time: .omitted))
-                                    .foregroundColor(dueDate < Date() && !task.isCompleted ? .red : .secondary)
+                                VStack(alignment: .trailing, spacing: 2) {
+                                    Text(dueDate.formatted(date: .abbreviated, time: .omitted))
+                                    if dueDate < Date() && !task.isCompleted {
+                                        Text("Overdue")
+                                            .font(.caption2)
+                                            .foregroundColor(.red)
+                                    }
+                                }
+                                .foregroundColor(dueDate < Date() && !task.isCompleted ? .red : .secondary)
                             }
                         }
                         
