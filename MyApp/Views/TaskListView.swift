@@ -124,19 +124,22 @@ struct StatisticCard: View {
 
 struct EmptyStateView: View {
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
             Image(systemName: "checklist")
-                .font(.system(size: 60))
-                .foregroundColor(.gray)
-            Text("No tasks yet")
-                .font(.title2)
-                .fontWeight(.semibold)
-            Text("Tap the + button to add your first task")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+                .font(.system(size: 70))
+                .foregroundColor(.gray.opacity(0.6))
+            VStack(spacing: 8) {
+                Text("No tasks yet")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                Text("Tap the + button to add your first task")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
+        .padding(40)
     }
 }
 
