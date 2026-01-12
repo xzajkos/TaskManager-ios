@@ -54,14 +54,31 @@ struct TaskListView: View {
                     List {
                         ForEach(viewModel.filteredTasks) { task in
                             TaskRowView(task: task) {
-                                viewModel.toggleTaskCompletion(task)
+                                withAnimation {
+                                    viewModel.toggleTaskCompletion(task)
+                                }
                             }
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button(role: .destructive) {
-                                    viewModel.deleteTask(task)
+                                    withAnimation {
+                                        viewModel.deleteTask(task)
+                                    }
                                 } label: {
                                     Label("Delete", systemImage: "trash")
                                 }
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                Button {
+                                    withAnimation {
+                                        viewModel.toggleTaskCompletion(task)
+                                    }
+                                } label: {
+                                    Label(
+                                        task.isCompleted ? "Uncomplete" : "Complete",
+                                        systemImage: task.isCompleted ? "arrow.uturn.backward" : "checkmark"
+                                    )
+                                }
+                                .tint(task.isCompleted ? .orange : .green)
                             }
                             .onTapGesture {
                                 selectedTask = task
