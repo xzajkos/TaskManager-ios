@@ -26,13 +26,22 @@ class TaskViewModel: ObservableObject {
     }
     
     var filteredTasks: [Task] {
+        let filtered: [Task]
         switch filterOption {
         case .all:
-            return tasks
+            filtered = tasks
         case .active:
-            return tasks.filter { !$0.isCompleted }
+            filtered = tasks.filter { !$0.isCompleted }
         case .completed:
-            return tasks.filter { $0.isCompleted }
+            filtered = tasks.filter { $0.isCompleted }
+        }
+        // Sort by priority (high first) and then by creation date (newest first)
+        return filtered.sorted { task1, task2 in
+            if task1.priority != task2.priority {
+                return task1.priority == .high || 
+                       (task1.priority == .medium && task2.priority == .low)
+            }
+            return task1.createdAt > task2.createdAt
         }
     }
     
