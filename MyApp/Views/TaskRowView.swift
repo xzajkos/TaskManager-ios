@@ -37,9 +37,20 @@ struct TaskRowView: View {
                     PriorityBadge(priority: task.priority)
                     
                     if let dueDate = task.dueDate {
-                        Label(dueDate.formatted(date: .abbreviated, time: .omitted), systemImage: "calendar")
-                            .font(.caption2)
-                            .foregroundColor(dueDate < Date() && !task.isCompleted ? .red : .secondary)
+                        HStack(spacing: 4) {
+                            Image(systemName: "calendar")
+                                .font(.caption2)
+                            Text(dueDate.formatted(date: .abbreviated, time: .omitted))
+                                .font(.caption2)
+                        }
+                        .foregroundColor(dueDate < Date() && !task.isCompleted ? .red : .secondary)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(
+                            (dueDate < Date() && !task.isCompleted ? Color.red : Color.gray)
+                                .opacity(0.1)
+                        )
+                        .cornerRadius(6)
                     }
                 }
             }
