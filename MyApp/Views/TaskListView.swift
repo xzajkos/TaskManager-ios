@@ -16,7 +16,7 @@ struct TaskListView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 // Statistics Header
-                HStack(spacing: 20) {
+                HStack(spacing: 16) {
                     StatisticCard(
                         title: "Total",
                         count: viewModel.tasks.count,
@@ -33,7 +33,8 @@ struct TaskListView: View {
                         color: .green
                     )
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.vertical, 12)
                 .background(Color(.systemGroupedBackground))
                 
                 // Filter Picker
@@ -43,7 +44,8 @@ struct TaskListView: View {
                     }
                 }
                 .pickerStyle(.segmented)
-                .padding()
+                .padding(.horizontal)
+                .padding(.bottom, 8)
                 
                 // Task List
                 if viewModel.filteredTasks.isEmpty {
