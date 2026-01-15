@@ -12,10 +12,6 @@ A modern task management application built with SwiftUI for iOS. This app helps 
 - **Swipe Actions**: Swipe to delete or mark tasks as complete
 - **Persistent Storage**: All tasks are automatically saved using UserDefaults
 
-## Screenshots
-
-![App Screenshot](screenshot.png)
-
 The app displays:
 - Statistics cards showing total, active, and completed tasks
 - Segmented control for filtering tasks
